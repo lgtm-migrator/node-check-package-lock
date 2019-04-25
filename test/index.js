@@ -51,7 +51,7 @@ describe('index.js', function() {
         });
     });
 
-	it('should exit 1 having problems', function(done) {
+    it('should exit 1 having problems', function(done) {
         let out = '';
         spawn('node', [path.join(__dirname, '../index.js'), '--folder', 'test/test3'], {
             cwd: path.join(__dirname, '../'),
@@ -65,7 +65,7 @@ describe('index.js', function() {
         });
     });
 
-	it('should exit 1 having problems with no file', function(done) {
+    it('should exit 1 having problems with no file', function(done) {
         let out = '';
         spawn('node', [path.join(__dirname, '../index.js'), '--folder', 'test'], {
             cwd: path.join(__dirname, '../'),

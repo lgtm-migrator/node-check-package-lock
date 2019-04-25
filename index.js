@@ -11,13 +11,13 @@ const program = require('commander');
  * @return {number}
  */
 function checkFolder() {
-	let fullpath = '';
-	if (program.folder) {
-		fullpath = program.folder + path.sep;
-	}
+    let fullpath = '';
+    if (program.folder) {
+        fullpath = program.folder + path.sep;
+    }
     const pack = fullpath + 'package-lock.json';
     if (fs.existsSync(pack)) {
-		const filecontent = fs.readFileSync(pack, {encoding: 'utf-8'});
+        const filecontent = fs.readFileSync(pack, {encoding: 'utf-8'});
         if (filecontent.indexOf("http://registry.npmjs.org") > -1) {
             console.log(pack + ' is NOT OK. It contains references to http://registry.npmjs.org');
             console.log('In order to fix this do:');
@@ -57,6 +57,6 @@ if (program.folder) {
         process.exitCode = 3;
     }
 } else {
-	const err = checkFolder();
-	process.exitCode = err;
+    const err = checkFolder();
+    process.exitCode = err;
 }
