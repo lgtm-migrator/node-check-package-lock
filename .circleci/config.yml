@@ -31,8 +31,8 @@ jobs:
       - run: npm ls
 
       # security test
-      #- run: sudo npm --global install snyk
-      #- run: snyk test
+      - run: sudo npm --global install snyk
+      - run: snyk test
 
       # correct line endings
       - run: sudo npm --global install lintspaces-cli
