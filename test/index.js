@@ -38,7 +38,20 @@ describe('index.js', function() {
         });
     });
 
-    it('should exit 0 having no problems without folder', function(done) {
+    it('should exit 0 having no problems with slash', function(done) {
+        let out = '';
+        spawn('node', [path.join(__dirname, '../index.js'), '--folder', 'test/test2/'], {
+            cwd: path.join(__dirname, '../'),
+        }).on('exit', function(code) {
+            assert.equal(code, 0);
+            expect(out).to.match(/package-lock.json is OK/);
+            done();
+        }).stdout.on('data', function(data) {
+            out += data;
+        });
+    });
+
+	it('should exit 0 having no problems without folder', function(done) {
         let out = '';
         spawn('node', [path.join(__dirname, '../index.js')], {
             cwd: path.join(__dirname, '../'),
