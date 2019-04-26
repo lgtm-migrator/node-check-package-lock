@@ -51,7 +51,7 @@ describe('index.js', function() {
         });
     });
 
-	it('should exit 0 having no problems without folder', function(done) {
+    it('should exit 0 having no problems without folder', function(done) {
         let out = '';
         spawn('node', [path.join(__dirname, '../index.js')], {
             cwd: path.join(__dirname, '../'),
