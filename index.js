@@ -18,7 +18,7 @@ function checkFolder() {
     const pack = fullpath + 'package-lock.json';
     if (fs.existsSync(pack)) {
         const filecontent = fs.readFileSync(pack, {encoding: 'utf-8'});
-        if (filecontent.indexOf('http://registry.npmjs.org') > -1) {
+        if (filecontent.indexOf('http://registry.npmjs.org') > -1) { // lgtm [js/incomplete-url-substring-sanitization]
             console.log(pack + ' is NOT OK. It contains references to http://registry.npmjs.org');
             console.log('In order to fix this do:');
             console.log('- Delete the package-lock.json file');
