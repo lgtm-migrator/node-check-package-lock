@@ -4,7 +4,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const program = require('commander');
+const {program} = require('commander');
 
 /**
  * Check a folder.
@@ -12,8 +12,8 @@ const program = require('commander');
  */
 function checkFolder() {
     let fullpath = '';
-    if (program.folder) {
-        fullpath = program.folder + path.sep;
+    if (options.folder) {
+        fullpath = options.folder + path.sep;
     }
     const pack = fullpath + 'package-lock.json';
     if (fs.existsSync(pack)) {
@@ -42,18 +42,19 @@ program
     .option('-f, --folder <folder>', 'Folder with package-lock.json file')
     .parse(process.argv);
 
-if (program.folder) {
-    if (fs.existsSync(program.folder)) {
-        const stats = fs.statSync(program.folder);
+const options = program.opts();
+if (options.folder) {
+    if (fs.existsSync(options.folder)) {
+        const stats = fs.statSync(options.folder);
         if (stats.isDirectory()) {
             const err = checkFolder();
             process.exitCode = err;
         } else {
-            console.log('Oops! Folder is not a real folder: ' + program.folder);
+            console.log('Oops! Folder is not a real folder: ' + options.folder);
             process.exitCode = 4;
         }
     } else {
-        console.log('Oops! Folder does not exists: ' + program.folder);
+        console.log('Oops! Folder does not exists: ' + options.folder);
         process.exitCode = 3;
     }
 } else {
