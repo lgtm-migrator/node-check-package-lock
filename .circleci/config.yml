@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # Use node image
-      - image: circleci/node:10
+      - image: circleci/node
 
     # code folder
     working_directory: ~/repo
@@ -31,17 +31,13 @@ jobs:
       - run: npm ls
 
       # security test
-      - run: sudo npm --global install snyk
-      - run: snyk test
+      - run: ./node_modules/.bin/snyk test
 
       # correct line endings
-      - run: sudo npm --global install lintspaces-cli
-      - run: find ./*.js ./*.json ./*.md test/*.js | xargs lintspaces --endofline 'lf' --newline --trailingspaces --verbose
-      - run: find test/ -name '*.json' | xargs lintspaces --endofline 'lf' --newline --trailingspaces --verbose
+      - run: find ./ -path ./node_modules -prune -o -name '*.css' -o -name '*.json' -o -name '*.md' -o -name '*.js' -o -name '*.yml' | xargs ./node_modules/.bin/lintspaces --endofline 'lf' --newline --trailingspaces --verbose
 
       # lint
-      - run: sudo npm --global install eslint eslint-config-google
-      - run: eslint '*.js' 'test/*.js'
+      - run: ./node_modules/.bin/eslint '*.js' 'test/*.js'
 
       # run tests
       - run: ./node_modules/.bin/nyc npm test
