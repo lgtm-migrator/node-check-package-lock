@@ -34,7 +34,7 @@ jobs:
       - run: ./node_modules/.bin/snyk test
 
       # correct line endings
-      - run: find ./ -path ./node_modules -prune -o -name '*.css' -o -name '*.json' -o -name '*.css' -o -name '*.md' | xargs ./node_modules/.bin/lintspaces --endofline 'lf' --newline --trailingspaces --verbose
+      - run: find ./ -path ./node_modules -prune -o -name '*.css' -o -name '*.json' -o -name '*.css' -o -name '*.md' -o -name '*.js' | xargs ./node_modules/.bin/lintspaces --endofline 'lf' --newline --trailingspaces --verbose
 
       # lint
       - run: ./node_modules/.bin/eslint '*.js' 'test/*.js'
