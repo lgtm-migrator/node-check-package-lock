@@ -16,7 +16,7 @@ describe('index.js', function() {
         spawn('node', [path.join(__dirname, '../index.js'), '--folder', 'test/test1'], {
             cwd: path.join(__dirname, '../'),
         }).on('exit', function(code) {
-            assert.equal(code, 1);
+            assert.strictEqual(code, 1);
             expect(out).to.match(/package-lock.json is NOT OK/);
             expect(out).to.match(/Delete the node_modules folder/);
             done();
@@ -30,7 +30,7 @@ describe('index.js', function() {
         spawn('node', [path.join(__dirname, '../index.js'), '--folder', 'test/test2'], {
             cwd: path.join(__dirname, '../'),
         }).on('exit', function(code) {
-            assert.equal(code, 0);
+            assert.strictEqual(code, 0);
             expect(out).to.match(/package-lock.json is OK/);
             done();
         }).stdout.on('data', function(data) {
@@ -43,7 +43,7 @@ describe('index.js', function() {
         spawn('node', [path.join(__dirname, '../index.js'), '--folder', 'test/test2/'], {
             cwd: path.join(__dirname, '../'),
         }).on('exit', function(code) {
-            assert.equal(code, 0);
+            assert.strictEqual(code, 0);
             expect(out).to.match(/package-lock.json is OK/);
             done();
         }).stdout.on('data', function(data) {
@@ -56,7 +56,7 @@ describe('index.js', function() {
         spawn('node', [path.join(__dirname, '../index.js')], {
             cwd: path.join(__dirname, '../'),
         }).on('exit', function(code) {
-            assert.equal(code, 0);
+            assert.strictEqual(code, 0);
             expect(out).to.match(/package-lock.json is OK/);
             done();
         }).stdout.on('data', function(data) {
@@ -69,7 +69,7 @@ describe('index.js', function() {
         spawn('node', [path.join(__dirname, '../index.js'), '--folder', 'test/test3'], {
             cwd: path.join(__dirname, '../'),
         }).on('exit', function(code) {
-            assert.equal(code, 1);
+            assert.strictEqual(code, 1);
             expect(out).to.match(/package-lock.json is NOT OK/);
             expect(out).to.match(/Delete the node_modules folder/);
             done();
@@ -83,7 +83,7 @@ describe('index.js', function() {
         spawn('node', [path.join(__dirname, '../index.js'), '--folder', 'test'], {
             cwd: path.join(__dirname, '../'),
         }).on('exit', function(code) {
-            assert.equal(code, 2);
+            assert.strictEqual(code, 2);
             expect(out).to.match(/package-lock.json does not exists/);
             done();
         }).stdout.on('data', function(data) {
@@ -95,9 +95,9 @@ describe('index.js', function() {
         spawn('node', [path.join(__dirname, '../index.js'), '--folder', '404'], {
             cwd: path.join(__dirname, '../'),
         }).on('exit', function(code) {
-            assert.equal(code, 3);
+            assert.strictEqual(code, 3);
         }).stdout.on('data', function(data) {
-            assert.equal(data.toString(), 'Oops! Folder does not exists: 404\n');
+            assert.strictEqual(data.toString(), 'Oops! Folder does not exists: 404\n');
             done();
         });
     });
@@ -106,9 +106,9 @@ describe('index.js', function() {
         spawn('node', [path.join(__dirname, '../index.js'), '--folder', 'test/index.js'], {
             cwd: path.join(__dirname, '../'),
         }).on('exit', function(code) {
-            assert.equal(code, 4);
+            assert.strictEqual(code, 4);
         }).stdout.on('data', function(data) {
-            assert.equal(data.toString(), 'Oops! Folder is not a real folder: test/index.js\n');
+            assert.strictEqual(data.toString(), 'Oops! Folder is not a real folder: test/index.js\n');
             done();
         });
     });
