@@ -36,12 +36,12 @@
         "chai": "^4.3.4",
         "child_process": "^1.0.2",
         "codecov": "^3.8.1",
-        "eslint": "^7.24.0",
+        "eslint": "^7.25.0",
         "eslint-config-google": "^0.14.0",
         "expect": "^26.6.2",
         "lintspaces-cli": "^0.7.1",
         "mocha": "^8.3.2",
         "nyc": "^15.1.0",
-        "snyk": "^1.563.0"
+        "snyk": "^1.571.0"
     }
 }
